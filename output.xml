@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0 (Python 3.12.2 on win32)" generated="2024-04-04T21:46:15.746510" rpa="false" schemaversion="5">
+<suite id="s1" name="Put Swagger Test" source="c:\Users\Cyntia\Documents\Academy_2024\RobortFramework\APIQualitysHunters\TesteAPIQH\tests\put_swagger_test.robot">
+<test id="s1-t1" name="Cenário com PUT: Editar dados da Diretoria" line="10">
+<kw name="Criar diretoria" owner="swagger_testes_recursos">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-04-04T21:46:16.126975" level="INFO">${headers} = {'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTMzMDk5YWZhNzBkNTMwNzVjODFlZjQiLCJmdWxsTmFtZSI6IlFhLUNvZGVycy1TWVNBRE1JTiIsIm1haWwiOiJzeXNhZG1pbkBxYWNvZGVycy5jb20iLCJwYXNzd29yZCI6...</msg>
+<var>${headers}</var>
+<arg>Authorization=${TOKEN}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-04-04T21:46:16.123975" elapsed="0.005996"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-04-04T21:46:16.131969" level="INFO">${body} = {'boardName': ''}</msg>
+<var>${body}</var>
+<arg>boardName=</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-04-04T21:46:16.130970" elapsed="0.001999"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-04-04T21:46:16.132969" level="INFO">{'boardName': ''}</msg>
+<arg>${body}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-04-04T21:46:16.132969" elapsed="0.000000"/>
+</kw>
+<kw name="Criar sessão" owner="swagger_testes_recursos">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-04-04T21:46:16.141964" level="INFO">${headers} = {'accept': 'application/json', 'Content-Type': 'application/json', 'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTMzMDk5YWZhNzBkNTMwNzVjODFlZjQiLCJmdWxsTmFtZSI6IlFhLUNvZGVycy1TWV...</msg>
+<var>${headers}</var>
+<arg>accept=application/json</arg>
+<arg>Content-Type=application/json</arg>
+<arg>Authorization=${TOKEN}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-04-04T21:46:16.138974" elapsed="0.002990"/>
+</kw>
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-04-04T21:46:16.144963" level="INFO">Creating Session using : alias=APISwagger, url=https://qualitys-hunters.qacoders-academy.com.br, headers={'accept': 'application/json', 'Content-Type': 'application/json', 'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTMzMDk5YWZhNzBkNTMwNzVjODFlZjQiLCJmdWxsTmFtZSI6IlFhLUNvZGVycy1TWVNBRE1JTiIsIm1haWwiOiJzeXNhZG1pbkBxYWNvZGVycy5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRBVEd0US5ZMVB4a1VxNHJDS00zS2x1djl4TVJIUHU4Mkg4Ylo3ZFNFSVNxTHVQSlIuTEFuNiIsImFjY2Vzc1Byb2ZpbGUiOiJTWVNBRE1JTiIsImNwZiI6IjExMTExMTExMTExIiwic3RhdHVzIjp0cnVlLCJhdWRpdCI6W3sicmVnaXN0ZXJlZEJ5Ijp7InVzZXJJZCI6IjExMTExMTExMTExMTExMTExMSIsInVzZXJMb2dpbiI6InN5c2FkbWluQHFhY29kZXJzLmNvbSJ9LCJyZWdpc3RyYXRpb25EYXRlIjoic2V4dGEtZmVpcmEsIDIwLzEwLzIwMjMsIDIwOjEzOjI5IEJSVCIsInJlZ2lzdHJhdGlvbk51bWJlciI6IjAxIiwiY29tcGFueUlkIjoiUWEuQ29kZXJzIiwiX2lkIjoiNjUzMzA5OWFmYTcwZDUzMDc1YzgxZWY1In1dLCJfX3YiOjAsImlhdCI6MTcxMjI1MjY3NiwiZXhwIjoxNzEyMzM5MDc2fQ.s80hLFQ-InuCDIjnv2odxuDIq9t03A3bZ33SWMnL2m0'},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>alias=APISwagger</arg>
+<arg>url=https://qualitys-hunters.qacoders-academy.com.br</arg>
+<arg>headers=${headers}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-04-04T21:46:16.142965" elapsed="0.002996"/>
+</kw>
+<status status="PASS" start="2024-04-04T21:46:16.136968" elapsed="0.009993"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2024-04-04T21:46:17.326026" level="INFO">POST Request : url=https://qualitys-hunters.qacoders-academy.com.br/api/board 
+ path_url=/api/board 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'accept': 'application/json', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTMzMDk5YWZhNzBkNTMwNzVjODFlZjQiLCJmdWxsTmFtZSI6IlFhLUNvZGVycy1TWVNBRE1JTiIsIm1haWwiOiJzeXNhZG1pbkBxYWNvZGVycy5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRBVEd0US5ZMVB4a1VxNHJDS00zS2x1djl4TVJIUHU4Mkg4Ylo3ZFNFSVNxTHVQSlIuTEFuNiIsImFjY2Vzc1Byb2ZpbGUiOiJTWVNBRE1JTiIsImNwZiI6IjExMTExMTExMTExIiwic3RhdHVzIjp0cnVlLCJhdWRpdCI6W3sicmVnaXN0ZXJlZEJ5Ijp7InVzZXJJZCI6IjExMTExMTExMTExMTExMTExMSIsInVzZXJMb2dpbiI6InN5c2FkbWluQHFhY29kZXJzLmNvbSJ9LCJyZWdpc3RyYXRpb25EYXRlIjoic2V4dGEtZmVpcmEsIDIwLzEwLzIwMjMsIDIwOjEzOjI5IEJSVCIsInJlZ2lzdHJhdGlvbk51bWJlciI6IjAxIiwiY29tcGFueUlkIjoiUWEuQ29kZXJzIiwiX2lkIjoiNjUzMzA5OWFmYTcwZDUzMDc1YzgxZWY1In1dLCJfX3YiOjAsImlhdCI6MTcxMjI1MjY3NiwiZXhwIjoxNzEyMzM5MDc2fQ.s80hLFQ-InuCDIjnv2odxuDIq9t03A3bZ33SWMnL2m0', 'Content-Length': '17'} 
+ body=b'{"boardName": ""}' 
+ </msg>
+<msg time="2024-04-04T21:46:17.327013" level="INFO">POST Response : url=https://qualitys-hunters.qacoders-academy.com.br/api/board 
+ status=400, reason=Bad Request 
+ headers={'Server': 'nginx/1.18.0 (Ubuntu)', 'Date': 'Fri, 05 Apr 2024 00:46:17 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '50', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE', 'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, Authorization', 'ETag': 'W/"32-+CwHCnr2cCygkjBKgpOJ2v10f8g"'} 
+ body={"error":["O campo 'diretoria' é obrigatório."]} 
+ </msg>
+<msg time="2024-04-04T21:46:17.328011" level="INFO">C:\Users\Cyntia\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\connectionpool.py:1103: InsecureRequestWarning: Unverified HTTPS request is being made to host 'qualitys-hunters.qacoders-academy.com.br'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2024-04-04T21:46:17.336007" level="FAIL">HTTPError: 400 Client Error: Bad Request for url: https://qualitys-hunters.qacoders-academy.com.br/api/board</msg>
+<var>${resposta}</var>
+<arg>alias=APISwagger</arg>
+<arg>url=/api/board</arg>
+<arg>json=${body}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="FAIL" start="2024-04-04T21:46:16.147962" elapsed="1.197040">HTTPError: 400 Client Error: Bad Request for url: https://qualitys-hunters.qacoders-academy.com.br/api/board</status>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<arg>${resposta.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2024-04-04T21:46:17.345002" elapsed="0.000000"/>
+</kw>
+<kw name="Set Test Variable" owner="BuiltIn">
+<arg>${BOARD_NAME}</arg>
+<arg>${resposta.json()['newBoard']['_id']}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<status status="NOT RUN" start="2024-04-04T21:46:17.346001" elapsed="0.000000"/>
+</kw>
+<kw name="Set Test Variable" owner="BuiltIn">
+<arg>${RESPOSTA}</arg>
+<arg>${resposta.json()}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<status status="NOT RUN" start="2024-04-04T21:46:17.346001" elapsed="0.000000"/>
+</kw>
+<kw>
+<var>${resposta}</var>
+<var>${resposta['expected_status']['400']}</var>
+<status status="NOT RUN" start="2024-04-04T21:46:17.347000" elapsed="0.000000"/>
+</kw>
+<status status="FAIL" start="2024-04-04T21:46:16.119985" elapsed="1.227015">HTTPError: 400 Client Error: Bad Request for url: https://qualitys-hunters.qacoders-academy.com.br/api/board</status>
+</kw>
+<kw name="Conferir os dados retornados da Diretoria" owner="swagger_testes_recursos">
+<status status="NOT RUN" start="2024-04-04T21:46:17.352997" elapsed="0.000000"/>
+</kw>
+<kw name="Consultar os dados da Diretoria" owner="swagger_testes_recursos">
+<status status="NOT RUN" start="2024-04-04T21:46:17.355995" elapsed="0.000000"/>
+</kw>
+<kw name="Criar sessão" owner="swagger_testes_recursos">
+<status status="NOT RUN" start="2024-04-04T21:46:17.368989" elapsed="0.001997"/>
+</kw>
+<kw name="Alterar status da Diretoria" owner="swagger_testes_recursos">
+<status status="NOT RUN" start="2024-04-04T21:46:17.372985" elapsed="0.000999"/>
+</kw>
+<status status="FAIL" start="2024-04-04T21:46:16.111982" elapsed="1.273001">HTTPError: 400 Client Error: Bad Request for url: https://qualitys-hunters.qacoders-academy.com.br/api/board</status>
+</test>
+<status status="FAIL" start="2024-04-04T21:46:15.760494" elapsed="1.629480"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Put Swagger Test">Put Swagger Test</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2024-04-04T21:46:16.100990" level="ERROR">Error in file 'c:\Users\Cyntia\Documents\Academy_2024\RobortFramework\APIQualitysHunters\TesteAPIQH\resources\swagger_testes_recursos.resource' on line 8: Importing library 'Faker' failed: ModuleNotFoundError: No module named 'Faker'
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  c:\Users\Cyntia\.vscode\extensions\robocorp.robotframework-lsp-1.11.0\src\robotframework_debug_adapter
+  C:\Users\Cyntia\Documents\Academy_2024\RobortFramework\APIQualitysHunters\TesteAPIQH
+  c:\Users\Cyntia\.vscode\extensions\robocorp.robotframework-lsp-1.11.0\src
+  c:\Users\Cyntia\.vscode\extensions\robocorp.robotframework-lsp-1.11.0\src\robotframework_ls\vendored
+  C:\Users\Cyntia\AppData\Local\Programs\Python\Python312\python312.zip
+  C:\Users\Cyntia\AppData\Local\Programs\Python\Python312\DLLs
+  C:\Users\Cyntia\AppData\Local\Programs\Python\Python312\Lib
+  C:\Users\Cyntia\AppData\Local\Programs\Python\Python312
+  C:\Users\Cyntia\AppData\Local\Programs\Python\Python312\Lib\site-packages</msg>
+</errors>
+</robot>
