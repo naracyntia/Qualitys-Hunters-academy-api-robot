@@ -30,14 +30,3 @@ Cenário com POST: Cadastrar nova Diretoria
 
 
 
-
-Cenário com POST: Cadastrar novo centro de custo
-    Criar sessão
-    Criar Centro de Custo   
-    Conferir se o centro de custo foi cadastrado corretamente
-
-
-
-Cenário com POST: Cadastrar novo departamento sucesso 
-    Cadastrar o novo departamento criado
-    Conferir se novo departamento foi cadastrado corretamente
