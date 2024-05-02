@@ -5,7 +5,7 @@ Library    String
 Library    Collections
 Library    OperatingSystem
 Library    XML
-Library    Faker
+
 
 
 *** Variables ***
@@ -128,73 +128,5 @@ Contagem de cadastro
 
 
 
-
-
-
-
-Criar Centro de Custo
-    ${headers}    Create Dictionary    accept=application/json    Authorization=${TOKEN}
-    ${body}       Create Dictionary    costCentername=aDminiStrAcAo       boardId=74e51673d94be9062773f6dc           
-    Log    ${body}
-    Criar sessão
-    ${resposta}    POST On Session   alias=APISwagger    url=/api/costCenter/   json=${body}            
-    Log    ${resposta.json()}
-    Set Test Variable    ${ID_BOARD}        ${resposta.json()['newCostCenter']['_id']}
-    Set Test Variable     ${RESPOSTA}        ${resposta.json()}
-
-
-
-Conferir se o centro de custo foi cadastrado corretamente
-    Log    ${RESPOSTA}
-    Dictionary Should Contain Item    ${RESPOSTA}    msg    erro
-    Dictionary Should Contain Key     ${RESPOSTA}    newCostCenter    _id    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Cadastrar o novo departamento criado
-    ${headers}    Create Dictionary    Authorization=${TOKEN}
-    ${body}        Create Dictionary    departmentName=Novo Departamento       costCenterId=64e51573d94be9062773f6da     
-    Log    ${body}
-    Criar sessão
-    ${resposta}    POST On Session    alias=APISwagger    url=api/department    json=${body}        
-    Log    ${resposta.json()}
-    Set Test Variable    ${ID_USUARIO}    ${resposta.json()['newDepartment']['_id']}
-    Set Test Variable    ${RESPOSTA}         ${resposta.json()}
-
-Conferir se novo departamento foi cadastrado corretamente
-    Log    ${RESPOSTA}
-    Dictionary Should Contain Item    ${RESPOSTA}    msg    Cadastro realizado com sucesso!
-    Dictionary Should Contain Key     ${RESPOSTA}    newBoard    _id     
-
-
-
-
-
-
-
-
-
-
-Gerar Números Inteiros Aleatórios
-    Criar sessão
-    ${numero_randomica}    Generate Random String    length=11    chars=[NUMBER]
-    Log    Número Inteiro Gerado: ${numero_randomica}
-    Log    ${resposta.json()}
-    Set Suite Variable     ${NUMERO_RANDOMICO}       ${resposta.json()["number"]}
 
 
