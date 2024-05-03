@@ -1,4 +1,4 @@
-# Tests Frontend 
+# Tests Backend Api
 
 Bem-vindo ao Projeto de Automação Qa.Coders Academy T-11.
 Este é um breve resumo do que você encontrará aqui.
@@ -59,7 +59,7 @@ Para executar os testes de API no Robot Framework, siga estas etapas:
 Qualitys Hunters
 
 ## Tech Lead
-Cleberson
+Cleberson Osorio
 
 ## Participantes
 - Nara Cyntia
