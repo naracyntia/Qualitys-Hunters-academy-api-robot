@@ -1,4 +1,4 @@
-# Tests Backend Api
+# Tests Backend API
 
 Bem-vindo ao Projeto de Automação Qa.Coders Academy T-11.
 Este é um breve resumo do que você encontrará aqui.
