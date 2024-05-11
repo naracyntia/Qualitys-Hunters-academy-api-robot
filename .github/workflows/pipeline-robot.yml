@@ -48,9 +48,9 @@ jobs:
       id-token: write
     environment:
       name: github-pages
-      url:  https://naracyntia.github.io/Qualitys-Hunters-academy-api-robot/report.html
-           
-       
+      url: https://naracyntia.github.io/Qualitys-Hunters-academy-api-robot/report.html
+            
+        
     steps:
       - name: Setup Pages
         uses: actions/configure-pages@v2
