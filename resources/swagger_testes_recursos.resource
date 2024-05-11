@@ -9,7 +9,7 @@ Library    XML
 
 
 *** Variables ***
-${TOKEN}    eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTMzMDk5YWZhNzBkNTMwNzVjODFlZjQiLCJmdWxsTmFtZSI6IlFhLUNvZGVycy1TWVNBRE1JTiIsIm1haWwiOiJzeXNhZG1pbkBxYWNvZGVycy5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRBVEd0US5ZMVB4a1VxNHJDS00zS2x1djl4TVJIUHU4Mkg4Ylo3ZFNFSVNxTHVQSlIuTEFuNiIsImFjY2Vzc1Byb2ZpbGUiOiJTWVNBRE1JTiIsImNwZiI6IjExMTExMTExMTExIiwic3RhdHVzIjp0cnVlLCJhdWRpdCI6W3sicmVnaXN0ZXJlZEJ5Ijp7InVzZXJJZCI6IjExMTExMTExMTExMTExMTExMSIsInVzZXJMb2dpbiI6InN5c2FkbWluQHFhY29kZXJzLmNvbSJ9LCJyZWdpc3RyYXRpb25EYXRlIjoic2V4dGEtZmVpcmEsIDIwLzEwLzIwMjMsIDIwOjEzOjI5IEJSVCIsInJlZ2lzdHJhdGlvbk51bWJlciI6IjAxIiwiY29tcGFueUlkIjoiUWEuQ29kZXJzIiwiX2lkIjoiNjUzMzA5OWFmYTcwZDUzMDc1YzgxZWY1In1dLCJfX3YiOjAsImlhdCI6MTcxMjI1MjY3NiwiZXhwIjoxNzEyMzM5MDc2fQ.s80hLFQ-InuCDIjnv2odxuDIq9t03A3bZ33SWMnL2m0
+${TOKEN}    eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTMzMDk5YWZhNzBkNTMwNzVjODFlZjQiLCJmdWxsTmFtZSI6IlFhLUNvZGVycy1TWVNBRE1JTiIsIm1haWwiOiJzeXNhZG1pbkBxYWNvZGVycy5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRBVEd0US5ZMVB4a1VxNHJDS00zS2x1djl4TVJIUHU4Mkg4Ylo3ZFNFSVNxTHVQSlIuTEFuNiIsImFjY2Vzc1Byb2ZpbGUiOiJTWVNBRE1JTiIsImNwZiI6IjExMTExMTExMTExIiwic3RhdHVzIjp0cnVlLCJhdWRpdCI6W3sicmVnaXN0ZXJlZEJ5Ijp7InVzZXJJZCI6IjExMTExMTExMTExMTExMTExMSIsInVzZXJMb2dpbiI6InN5c2FkbWluQHFhY29kZXJzLmNvbSJ9LCJyZWdpc3RyYXRpb25EYXRlIjoic2V4dGEtZmVpcmEsIDIwLzEwLzIwMjMsIDIwOjEzOjI5IEJSVCIsInJlZ2lzdHJhdGlvbk51bWJlciI6IjAxIiwiY29tcGFueUlkIjoiUWEuQ29kZXJzIiwiX2lkIjoiNjUzMzA5OWFmYTcwZDUzMDc1YzgxZWY1In1dLCJfX3YiOjAsImlhdCI6MTcxNTM1NTE5MSwiZXhwIjoxNzE1NDQxNTkxfQ.2rhztXX9aOixlwguvEsgCMFnIA5hicYKcivPzDO2apo
 
 
 
@@ -36,17 +36,24 @@ Validar o token e gravar no header de autorização
 
 
 Criar login de usuario    
-    ${palavra_randomica_1}    Generate Random String    length=8    chars=[LETTERS]
-    ${palavra_randomica_1}    Convert To Lower Case     ${palavra_randomica_1}
-    Set Test Variable      ${EMAIL_TEST}              ${palavra_randomica_1}@qacoders.com.br        
-    Log                    ${EMAIL_TEST} 
+    ${palavra_randomica_1}      Generate Random String      length=8    chars=[LETTERS]
+    ${palavra_randomica_cpf}    generate random string      length=11    chars=[NUMBERS]
+    ${palavra_randomica_1}      Convert To Lower Case       ${palavra_randomica_1}
+    ${palavra_randomica_cpf}    convert to lower case       ${palavra_randomica_cpf}
+   
+    set test variable           ${FULLNAME}                 ${palavra_randomica_1}
+    Set Test Variable           ${EMAIL_TEST}               ${palavra_randomica_1}@qacoders.com.br        
+    Log                         ${EMAIL_TEST}     
+    set test variable           ${CPF}                      ${palavra_randomica_cpf}
+    log                         ${CPF}
        
    
 Cadastrar usuario
-    ${body}    Create Dictionary    fullName=naRa MArquez     mail=${EMAIL_TEST}    password=1234@Test      accessProfile=ADMIN    cpf=23415477919    confirmPassword=1234@Test    
+    ${headers}    Create Dictionary    Authorization=${TOKEN}
+    ${body}    Create Dictionary    fullName=${FULLNAME}     mail=${EMAIL_TEST}    password=1234@Test      accessProfile=ADMIN     cpf=${CPF}     confirmPassword=1234@Test    
     Log    ${body}
     Criar sessão
-    ${resposta}    POST On Session   alias=APISwagger    url=/api/user   json=${body}        
+    ${resposta}        post on session       alias=APISwagger        url=/api/user   json=${body}        
     Log    ${resposta.json()}
     Set Suite Variable    ${ID_USUARIO}     ${resposta.json()["user"]["_id"]}
     Set Test Variable     ${RESPOSTA}       ${resposta.json()}
@@ -54,7 +61,7 @@ Cadastrar usuario
 
 Conferir se este usuario foi cadastrado corretamente
     Log    ${RESPOSTA}
-    Dictionary Should Contain Item    ${RESPOSTA}    msg    Olá naRa MArquez, cadastro realizado com sucesso.
+    Dictionary Should Contain Item    ${RESPOSTA}    msg    Olá ${FULLNAME}, cadastro realizado com sucesso.
     Dictionary Should Contain Key     ${RESPOSTA}    user    _id
 
 
@@ -68,14 +75,14 @@ Criar Massa de dados para diretoria
 
 Criar diretoria
     ${headers}    Create Dictionary    Authorization=${TOKEN}
-    ${body}    Create Dictionary    boardName=     
+    ${body}    Create Dictionary    boardName=${BOARD_NAME}     
     Log    ${body}
     Criar sessão
     ${resposta}    POST On Session   alias=APISwagger    url=/api/board   json=${body}               
     Log    ${resposta.json()}
     Set Test Variable     ${BOARD_NAME}        ${resposta.json()['newBoard']['_id']}
     Set Test Variable     ${RESPOSTA}        ${resposta.json()}
-    ${resposta}           ${resposta['expected_status']['400']}
+   
 
 
 Conferir se diretoria foi cadastrado corretamente
@@ -110,12 +117,6 @@ Contagem de cadastro
     ${count_Lista}    GET On Session     alias=APISwagger    url=/api/board/count
        
     
-
-
-
-
-
-
 
 
 
