@@ -9,7 +9,7 @@ Library    XML
 
 
 *** Variables ***
-${TOKEN}    eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTMzMDk5YWZhNzBkNTMwNzVjODFlZjQiLCJmdWxsTmFtZSI6IlFhLUNvZGVycy1TWVNBRE1JTiIsIm1haWwiOiJzeXNhZG1pbkBxYWNvZGVycy5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRBVEd0US5ZMVB4a1VxNHJDS00zS2x1djl4TVJIUHU4Mkg4Ylo3ZFNFSVNxTHVQSlIuTEFuNiIsImFjY2Vzc1Byb2ZpbGUiOiJTWVNBRE1JTiIsImNwZiI6IjExMTExMTExMTExIiwic3RhdHVzIjp0cnVlLCJhdWRpdCI6W3sicmVnaXN0ZXJlZEJ5Ijp7InVzZXJJZCI6IjExMTExMTExMTExMTExMTExMSIsInVzZXJMb2dpbiI6InN5c2FkbWluQHFhY29kZXJzLmNvbSJ9LCJyZWdpc3RyYXRpb25EYXRlIjoic2V4dGEtZmVpcmEsIDIwLzEwLzIwMjMsIDIwOjEzOjI5IEJSVCIsInJlZ2lzdHJhdGlvbk51bWJlciI6IjAxIiwiY29tcGFueUlkIjoiUWEuQ29kZXJzIiwiX2lkIjoiNjUzMzA5OWFmYTcwZDUzMDc1YzgxZWY1In1dLCJfX3YiOjAsImlhdCI6MTcxNTM1NTE5MSwiZXhwIjoxNzE1NDQxNTkxfQ.2rhztXX9aOixlwguvEsgCMFnIA5hicYKcivPzDO2apo
+${TOKEN}    eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTMzMDk5YWZhNzBkNTMwNzVjODFlZjQiLCJmdWxsTmFtZSI6IlFhLUNvZGVycy1TWVNBRE1JTiIsIm1haWwiOiJzeXNhZG1pbkBxYWNvZGVycy5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRBVEd0US5ZMVB4a1VxNHJDS00zS2x1djl4TVJIUHU4Mkg4Ylo3ZFNFSVNxTHVQSlIuTEFuNiIsImFjY2Vzc1Byb2ZpbGUiOiJTWVNBRE1JTiIsImNwZiI6IjExMTExMTExMTExIiwic3RhdHVzIjp0cnVlLCJhdWRpdCI6W3sicmVnaXN0ZXJlZEJ5Ijp7InVzZXJJZCI6IjExMTExMTExMTExMTExMTExMSIsInVzZXJMb2dpbiI6InN5c2FkbWluQHFhY29kZXJzLmNvbSJ9LCJyZWdpc3RyYXRpb25EYXRlIjoic2V4dGEtZmVpcmEsIDIwLzEwLzIwMjMsIDIwOjEzOjI5IEJSVCIsInJlZ2lzdHJhdGlvbk51bWJlciI6IjAxIiwiY29tcGFueUlkIjoiUWEuQ29kZXJzIiwiX2lkIjoiNjUzMzA5OWFmYTcwZDUzMDc1YzgxZWY1In1dLCJfX3YiOjAsImlhdCI6MTcxNTYyNTI5MSwiZXhwIjoxNzE1NzExNjkxfQ.Wx7dnd5MB1U5mYzQW4NyVMzpZCVJHGBkHf6_biNf6lE
 
 
 
@@ -26,8 +26,11 @@ Entrar com usuario sysadmin
     Log    ${resposta.json()}
     Set Test Variable    ${TOKEN}    ${resposta.json()["token"]}
 
+    RETURN    ${TOKEN}
+
 
 Validar o token e gravar no header de autorização
+    ${tokenadm}    Entrar com usuario sysadmin    
     ${headers}    Create Dictionary    Authorization=Bearer ${TOKEN}
     ${resposta}    GET On Session    alias=APISwagger    url=/api/validateToken    headers=${headers}
     Log    Resposta da solicitação: ${resposta.content}
@@ -37,14 +40,14 @@ Validar o token e gravar no header de autorização
 
 Criar login de usuario    
     ${palavra_randomica_1}      Generate Random String      length=8    chars=[LETTERS]
-    ${palavra_randomica_cpf}    generate random string      length=11    chars=[NUMBERS]
+    ${numero_randomico_cpf}     generate random string      length=11    chars=[NUMBERS]
     ${palavra_randomica_1}      Convert To Lower Case       ${palavra_randomica_1}
-    ${palavra_randomica_cpf}    convert to lower case       ${palavra_randomica_cpf}
+    ${numero_randomico_cpf}     convert to lower case       ${numero_randomico_cpf}
    
-    set test variable           ${FULLNAME}                 ${palavra_randomica_1}
+    set test variable           ${FULLNAME}                 N${palavra_randomica_1}N
     Set Test Variable           ${EMAIL_TEST}               ${palavra_randomica_1}@qacoders.com.br        
     Log                         ${EMAIL_TEST}     
-    set test variable           ${CPF}                      ${palavra_randomica_cpf}
+    set test variable           ${CPF}                      ${numero_randomico_cpf}
     log                         ${CPF}
        
    
