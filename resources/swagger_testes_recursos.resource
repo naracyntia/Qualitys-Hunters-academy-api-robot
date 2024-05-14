@@ -39,17 +39,19 @@ Validar o token e gravar no header de autorização
 
 
 Criar login de usuario    
-    ${palavra_randomica_1}      Generate Random String      length=8    chars=[LETTERS]
-    ${numero_randomico_cpf}     generate random string      length=11    chars=[NUMBERS]
-    ${palavra_randomica_1}      Convert To Lower Case       ${palavra_randomica_1}
-    ${numero_randomico_cpf}     convert to lower case       ${numero_randomico_cpf}
+    ${palavra_randomica_1}              Generate Random String      length=8     chars=[LETTERS]
+    ${numero_randomico_cpf}             generate random string      length=11    chars=[NUMBERS]
+    ${palavra_randomica_email}          Generate Random String      length=8     chars=[LETTERS]
+    ${palavra_randomica_email}          Convert To Lower Case       ${palavra_randomica_email}
+    
    
-    set test variable           ${FULLNAME}                 N${palavra_randomica_1}N
-    Set Test Variable           ${EMAIL_TEST}               ${palavra_randomica_1}@qacoders.com.br        
+    set test variable           ${FULLNAME}                 ${palavra_randomica_1}
+    Set Test Variable           ${EMAIL_TEST}               ${palavra_randomica_email}@qacoders.com.br        
     Log                         ${EMAIL_TEST}     
     set test variable           ${CPF}                      ${numero_randomico_cpf}
     log                         ${CPF}
-       
+
+   
    
 Cadastrar usuario
     ${headers}    Create Dictionary    Authorization=${TOKEN}
@@ -60,7 +62,7 @@ Cadastrar usuario
     Log    ${resposta.json()}
     Set Suite Variable    ${ID_USUARIO}     ${resposta.json()["user"]["_id"]}
     Set Test Variable     ${RESPOSTA}       ${resposta.json()}
-
+    
 
 Conferir se este usuario foi cadastrado corretamente
     Log    ${RESPOSTA}
