@@ -39,14 +39,13 @@ Validar o token e gravar no header de autorização
 
 
 Criar login de usuario    
-    ${palavra_randomica_1}              Generate Random String      length=8     chars=[LETTERS]
-    ${numero_randomico_cpf}             generate random string      length=11    chars=[NUMBERS]
-    ${palavra_randomica_email}          Generate Random String      length=8     chars=[LETTERS]
-    ${palavra_randomica_email}          Convert To Lower Case       ${palavra_randomica_email}
+    ${palavra_randomica}          Generate Random String      length=8     chars=[LETTERS]
+    ${numero_randomico_cpf}       generate random string      length=11    chars=[NUMBERS]
+    ${palavra_randomica}          Convert To Lower Case       ${palavra_randomica}
     
    
-    set test variable           ${FULLNAME}                 ${palavra_randomica_1}
-    Set Test Variable           ${EMAIL_TEST}               ${palavra_randomica_email}@qacoders.com.br        
+    set test variable           ${FULLNAME}                 N${palavra_randomica}C
+    Set Test Variable           ${EMAIL_TEST}               ${palavra_randomica}@qacoders.com.br        
     Log                         ${EMAIL_TEST}     
     set test variable           ${CPF}                      ${numero_randomico_cpf}
     log                         ${CPF}
