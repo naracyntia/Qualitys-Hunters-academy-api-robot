@@ -19,6 +19,7 @@ Cenário com POST: Cadastrar novo usuario
 
 Cenário com POST: Cadastrar nova Diretoria
     Criar sessão
+    Validar o token e gravar no header de autorização
     Criar Massa de dados para diretoria   
     Criar diretoria   
     Conferir se diretoria foi cadastrado corretamente
